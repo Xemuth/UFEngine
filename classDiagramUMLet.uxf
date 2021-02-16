@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>105</y>
+      <w>165</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>**UFEContext**
+Upp::UFEContext
+--
+**Public**
+	int GetID() const
+	void TimerStart()
+	void TimerStop()
+	void TimerReset()
+	void TimerUpdateByHand(double timeStepInMS)
+	double GetTimeEllapsed()
+	
+	ServiceManager&amp; GetServiceManager()
+	SceneManager&amp; GetSceneManager()
+	
+	void Update()
+	
+	String ToString()const
+--
+-Will carry scene which will 
+ carry object, ensure 
+ communication between all Service 
+ and Scene/Object/Component.
+
+-Provide a quick api to perform 
+ time calculation.
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>160</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;60.0;60.0;60.0;60.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>55</y>
+      <w>195</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>**ServiceManager**
+Upp::ServiceManager
+--
+**Public**
+template &lt;class T&gt; T&amp; CreateService(bool active = true)
+template &lt;class T&gt; bool HasService()
+template &lt;class T&gt; T&amp; GetService()
+template &lt;class T&gt; bool IsServiceActive()
+template &lt;class T&gt; bool SetServiceActive(bool active = true)
+template &lt;class T&gt; bool RemoveService()
+
+int GetServicesCount()
+
+Array&lt;Service&gt;&amp; GetServices()
+const Array&lt;Service&gt;&amp; GetServices()const
+--
+-Provide an API to
+ manage service
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>195</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;50.0;160.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>195</y>
+      <w>150</w>
+      <h>145</h>
+    </coordinates>
+    <panel_attributes>**SceneManager**
+Upp::SceneManager
+--
+**Public**
+Scene&amp; CreateScene(const String&amp; name)
+bool HasScene(const String&amp; name)
+Scene&amp; GetScene(const String&amp; name)
+Scene&amp; GetScene(int position)
+Scene&amp; GetActiveScene()
+bool SetActiveScene(const Scene&amp; scene)
+bool SetActiveScene(int position)
+bool RemoveScene(const Scene&amp; scene)
+
+int GetScenesCount()
+
+Array&lt;Scene&gt;&amp; GetScenes()
+const Array&lt;Scene&gt;&amp; GetScenes()const
+--
+-Provide an API to manage scene
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>755</x>
+      <y>335</y>
+      <w>25</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>675</x>
+      <y>370</y>
+      <w>190</w>
+      <h>125</h>
+    </coordinates>
+    <panel_attributes>**Scene**
+Upp::Scene
+--
+**public**
+String GetName()const
+
+UFEContext&amp; GetContext()
+const UFEContext&amp; GetContext() const
+
+ObjectManager&amp; GetObjectManager()
+
+void Update(double timeEllapsed, double deltaTime = 0.0)
+	
+String ToString() const
+--
+-Carry an ObjectManager
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>365</y>
+      <w>315</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>**ObjectManager**
+Upp::ObjectManager
+--
+**Public**
+Object&amp; CreateObject(const String&amp; objectName, bool active = true)
+Object&amp; GetObject(const String&amp; objectName)
+Object&amp; GetObject(int position)
+bool HasObject(const String&amp; objectName)
+bool RemoveObject(const String&amp; objectName)
+
+int GetObjectsCount()
+
+Array&lt;Object&gt;&amp; GetObjects()
+const Array&lt;Object&gt;&amp; GetObjects()const
+
+Vector&lt;Object*&gt; GetObjectsDependingOnFunction(bool (*lambda)(Object&amp; object, Scene&amp; scene))
+--
+-Provide an API to manage all Object of a scene
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>430</y>
+      <w>55</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>445</x>
+      <y>500</y>
+      <w>25</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>540</y>
+      <w>190</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>**Object**
+Upp::Object
+--
+**Public**
+String GetName()const
+Object&amp; SetName(const String&amp; _name)
+
+Scene&amp; GetScene()
+const Scene&amp; GetScene()const
+
+bool IsActive()const
+Object&amp; SetActive(bool b = true)
+
+ComponentManager&amp; GetComponentManager()
+
+Transform&amp; GetTransform()
+const Transform&amp; GetTransform()const
+
+void Update(double timeEllapsed, double deltaTime = 0.0)
+
+String ToString()const
+--
+-An Object carry all is component and a 
+ Transform object. This Transform object
+ is used to locate this object into the 3D space.
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>505</x>
+      <y>505</y>
+      <w>390</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;270.0;50.0;270.0;50.0;10.0;760.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>885</x>
+      <y>505</y>
+      <w>355</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>**ComponentManager**
+Upp::ComponentManager
+--
+**Public**
+template &lt;class T&gt; T&amp; CreateComponent(bool active = true, int position = -1)
+template &lt;class T&gt; bool HasActiveComponent()
+template &lt;class T&gt; bool HasInactiveComponent()
+template &lt;class T&gt; bool HasComponent()
+template &lt;class T&gt; int FindActiveComponent(int start = 0)
+template &lt;class T&gt; int FindInactiveComponent(int start = 0)
+template &lt;class T&gt; int FindComponent(int start = 0)
+template &lt;class T&gt; T&amp; GetActiveComponent()
+template &lt;class T&gt; T&amp; GetInactiveComponent()
+template &lt;class T&gt; T&amp; GetComponent()
+
+Component&amp; GetComponent(int position)
+
+template &lt;class T&gt; VectorMap&lt;int, T*&gt; GetAllActiveComponents()
+template &lt;class T&gt; VectorMap&lt;int, T*&gt; GetAllInactiveComponents()
+template &lt;class T&gt; VectorMap&lt;int, T*&gt; GetAllComponents()
+
+template &lt;class T&gt; int GetComponentPosition(int start = 0)
+template &lt;class T&gt; bool RemoveComponent()
+template &lt;class T, class M&gt; bool SwapComponent()
+template &lt;class T&gt; bool SwapComponent(int newPosition)
+
+bool SwapComponent(int oldPosition, int newPosition)
+void  SendMessageBroadcastOnlyActive(const String&amp; message, const Value&amp; args = Value())
+void  SendMessageBroadcastOnlyInactive(const String&amp; message, const Value&amp; args = Value())
+void  SendMessageBroadcast(const String&amp; message, const Value&amp; args = Value())
+Value SendMessageToComponent(int componentPosition, const String&amp; message, const Value&amp; args = Value())
+template &lt;class T&gt; Value SendMessageToComponent(const String&amp; message, const Value&amp; args = Value())
+
+int GetComponentsCount()
+Array&lt;Component&gt;&amp; GetComponents()
+const Array&lt;Component&gt;&amp; GetComponents()const
+--
+-Carry all component of an Object. Provide an API to interact with them
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>505</x>
+      <y>650</y>
+      <w>55</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>515</y>
+      <w>305</w>
+      <h>395</h>
+    </coordinates>
+    <panel_attributes>**Transform**
+Upp::Transform
+--
+**Public**
+glm::vec3 GetPosition()const
+glm::quat GetRotation()const
+glm::vec3 GetScale()const
+
+Transform&amp; SetPosition(const glm::vec3&amp; vec3)
+Transform&amp; SetPosition(float x, float y, float z)
+
+Transform&amp; SetRotation(const glm::quat&amp; quat)
+Transform&amp; SetRotation(float Yaw, float Pitch, float Roll)
+Transform&amp; SetRotation(float angleDegree, const glm::vec3&amp; axis)
+
+Transform&amp; Move(const glm::vec3&amp; vec3)
+Transform&amp; Move(float x, float y, float z)
+
+Transform&amp; Rotate(const glm::quat&amp; quat)
+Transform&amp; Rotate(float Yaw, float Pitch, float Roll)
+Transform&amp; Rotate(float angleDegree, const glm::vec3&amp; axis)
+
+Transform&amp; SetScale(const glm::vec3&amp; vec3)
+Transform&amp; LookAt(const glm::vec3&amp; LookAt, glm::vec3 customUp = glm::vec3(0.0f,0.0f,0.0f))
+
+glm::mat4 GetViewMatrix()const
+glm::mat4 GetModelMatrix()const
+
+static glm::quat GetQuaterion(float Yaw, float Pitch, float Roll)
+static glm::quat GetQuaterion(float angleDegree, const glm::vec3&amp; axis)
+static glm::vec3 GetEulerAngle(const glm::quat&amp; quaterion)
+static glm::vec3 TransformVectorByMatrix(const glm::vec3&amp; vector,const glm::mat4&amp; matrix)
+
+Transform&amp; SetFront(const glm::vec3&amp; vec3)
+Transform&amp; SetUp(const glm::vec3&amp; vec3)
+Transform&amp; SetRight(const glm::vec3&amp; vec3)
+Transform&amp; SetWorldUp(const glm::vec3&amp; vec3)
+Transform&amp; SetWorldFront(const glm::vec3&amp; vec3)
+Transform&amp; SetWorldRight(const glm::vec3&amp; vec3)
+
+glm::vec3 GetFront()const
+glm::vec3 GetUp()const
+glm::vec3 GetRight()const
+glm::vec3 GetWorldUp()const
+glm::vec3 GetWorldFront()const
+glm::vec3 GetWorldRight()const
+
+String ToString()const
+--
+-Locate in 3D space the position and orientation of an Object
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>35</y>
+      <w>270</w>
+      <h>215</h>
+    </coordinates>
+    <panel_attributes>**Service**
+Upp::Service
+{Abstract Class}
+--
+**Public**
+virtual ~Service()
+
+bool IsActive()const
+UFEContext&amp; GetContext()
+
+virtual String GetName()const = 0
+
+virtual void OnCreation()
+virtual void OnDestruction()
+
+virtual void BeforeUpdate()
+virtual void AfterUpdate()
+
+virtual void BeforeActive()
+virtual void BeforeInactive()
+
+virtual Value ReceiveMessage(const String&amp; message,const Value&amp; args = Value())
+
+virtual String ToString()const
+--
+-Abstract class providing many virtual function to redefine
+ in order to add functionnalities to UFE
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>100</y>
+      <w>60</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>260</y>
+      <w>270</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>**Component**
+Upp::Component
+{Abstract Class}
+--
+**Public**
+virtual ~Component()
+
+bool IsActive()
+Component&amp; SetActive(bool b)
+
+Object&amp; GetObject()
+
+virtual void OnCreation()
+virtual void OnDestruction()
+virtual void BeforeActive()
+virtual void BeforeInactive()
+
+virtual Value ReceiveMessage(const String&amp; message,const Value&amp; args = Value())
+virtual void Update(double timeEllapsed, double deltaTime = 0.0)
+
+virtual String GetName()const = 0
+virtual String ToString()const
+
+static const InstantiationConstraint Constraint = InstantiationConstraint::NONE
+--
+-Abstract class providing many virtual function in order to work with Service
+ and provide new functionnalities to UFE
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1055</x>
+      <y>465</y>
+      <w>25</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1210</x>
+      <y>420</y>
+      <w>95</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>**InstantiationConstraint**
+{enum class}
+--
+NONE
+ONE_BY_OBJECT
+ONE_BY_SCENE
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1185</x>
+      <y>440</y>
+      <w>35</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+bg=light_gray
+fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+</diagram>

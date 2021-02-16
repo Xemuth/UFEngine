@@ -1,0 +1,28 @@
+description "\377B85,0,255";
+
+uses
+	Core;
+
+file
+	UFEngine.h,
+	README.md,
+	src\UFEContext.h,
+	src\ServicesManager.h,
+	src\SceneManager.h,
+	src\Scene.h,
+	src\ObjectManager.h,
+	src\Object.h,
+	src\ComponentManager.h,
+	src\ComponentManagerEx.h,
+	src\Transform.h,
+	src\Service.h,
+	src\Component.h,
+	src\CRoutine.h,
+	src\Context.cpp,
+	src\Scene.cpp,
+	src\Object.cpp,
+	src\ComponentManager.cpp,
+	src\Transform.cpp,
+	src\Service.cpp,
+	src\Component.cpp;
+
