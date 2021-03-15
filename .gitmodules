@@ -1,0 +1,6 @@
+[submodule "plugin/AssimpLoader"]
+	path = plugin/AssimpLoader
+	url = https://github.com/Xemuth/AssimpLoader
+[submodule "plugin/OpenGLRenderer"]
+	path = plugin/OpenGLRenderer
+	url = https://github.com/Xemuth/OpenGLRenderer

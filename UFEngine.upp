@@ -1,7 +1,9 @@
 description "\377B85,0,255";
 
 uses
-	Core;
+	Core,
+	UFEngine/plugin/OpenGLRenderer,
+	UFEngine/plugin/AssimpLoader;
 
 file
 	UFEngine.h,
